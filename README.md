@@ -41,6 +41,28 @@
   <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/rpi-arduino.jpg" width="50%" height="50%">
 </p>
 
+### § RPi3 & Arduino
+|            |RPi3        |Arduino     |
+|:----------:|:----------:|:----------:|
+|Up          |GPIO20      |PIN12       |
+|Down        |GPIO21      |PIN13       |
+|Left        |GPIO23      |PIN5        |
+|Right       |GPIO24      |PIN6        |
+
+### § Arduino & MG996R
+|            |Arduino     |MG996R      |
+|:----------:|:----------:|:----------:|
+|GND         |GND         |GND         |
+|VCC         |5V          |V+          |
+|Servo (X)   |PIN9        |PWM         |
+|Servo (Y)   |PIN10       |PWM         |
+
+### § RPi3 & LED
+|            |RPi3        |LED         |
+|:----------:|:----------:|:----------:|
+|GND         |GND         |V -         |
+|VCC         |GPIO26      |V+          |
+
 上圖為線路架構，RPi負責追蹤臉部，傳送旋轉的指令給Arduino，Arduino再控制Servo進行旋轉。我們是透過4條電線進行訊號傳遞，分別控制左轉、右轉、上轉、下轉的訊號，也可以使用Bluetooth、I2C等等。
 
 在利用dlib的correlation_tracker的時候，我們可以得到臉部的中心位置，當中心位置超出我們設定的邊界，就傳訊號給Arduino旋轉，直到影像中心位置回到邊界中間。
@@ -56,15 +78,21 @@ Arduino則是設定好伺服馬達的初始角度後，在`loop()`內不斷進�
 首先是膚色偵測與校準，偵測的部分利用`cv2.inRange2`鎖定我們所感興趣的顏色範圍，校準的部分利用cv2的trackbar功能，即時的轉換校準範圍，針對不同的背景環境進行即時的修改。
 
 #### Skin detection
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
+</p>
 
 #### Track bar
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
+</p>
 
 再來是找出膚色輪廓，以及輪廓凹陷處來辨識為何種手型。選取輪廓的部分利用`cv2.findContour`，輪廓凹陷處利用`cv2.convexHull`，偵測完之後會得到許多convexity defects，可以想成是手指與手指之間的間隙。由於膚色辨識所得出來的結果並不是很乾淨，還會夾帶許多雜訊，所以最後利用一些演算法，像是把指縫夾角過大，或是手指過短的defects去掉，便可以得到較準確的手指數量與位置，來算出最後所比出的手勢為何。
 
 #### Find contour (Green line) & Get convexhull (red and blue points)
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
+</p>
 
 ### § 指令傳送
 
@@ -92,7 +120,7 @@ Arduino則是設定好伺服馬達的初始角度後，在`loop()`內不斷進�
   
 ### § 指令穩定
 
-所謂指令穩定，
+顧名思義，就是要穩定指令，就算RPi3在手勢辨識的時候已經有演算法在控制，但還是會有不穩定的偵測發生。舉例來說，實際上可能我可能一直比著2，但是由於手可能會晃動，或是偵測範圍的抖動，導致會有一瞬間判定出1，或是3，這樣會傳出一個我們不想要的指令。因此我們這邊用了一個Fixed Queue的機制，儲存前5個指令的歷史紀錄，而如果在Queue中至少出現4次同樣的指令的話則會執行該指令。也就是說，在塞滿了歷史紀錄為2的Queue當中突然出現一個1的話，他會忽略那個雜訊1，而繼續執行指令2的動作。當然這麼做會有些缺點，就是當我們在換指令的時候，會有些微的delay，那是因為新指令還在剛丟入到Queue裡面，所以至少要等4個cycle才會執行新指令，不過在穩定指令跟新指令延遲這兩個狀況來取一個trade off的話，這樣的小延遲是可以接受的。
 
 # 成果
 
