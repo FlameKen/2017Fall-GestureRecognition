@@ -57,8 +57,8 @@
   
 # 成果
 
-1.  [Face Tracker]<a href="http://www.youtube.com/watch?feature=player_embedded&v=_Xq-OTUw1Vc" target="_blank"><img src="http://img.youtube.com/vi/_Xq-OTUw1Vc/0.jpg" alt="IMAGE ALT TEXT HERE" width="360" height="240" border="20" /></a>
-2.  [Face Tracker](https://www.youtube.com/watch?v=_Xq-OTUw1Vc&feature=youtu.be)
+1.  <a href="http://www.youtube.com/watch?feature=player_embedded&v=_Xq-OTUw1Vc" target="_blank"><img src="http://img.youtube.com/vi/_Xq-OTUw1Vc/0.jpg" alt="IMAGE ALT TEXT HERE" width="360" height="240" border="20" /></a>
+    [Face Tracker](
 
 2.  [Slide Controller](https://www.youtube.com/watch?v=H5ghYShFbUI&feature=youtu.be)
 
