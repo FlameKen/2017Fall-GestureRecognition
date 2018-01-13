@@ -29,11 +29,13 @@
    
 首先是膚色偵測與校準，偵測的部分利用`cv2.inRange2`鎖定我們所感興趣的顏色範圍，校準的部分利用cv2的trackbar功能，即時的轉換校準範圍，針對不同的背景環境進行即時的修改。
    
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="50%" height="50%">
+<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
 
 再來是找出膚色輪廓，以及輪廓凹陷處來辨識為何種手型。選取輪廓的部分利用`cv2.findContour`，輪廓凹陷處利用`cv2.convexHull`，偵測完之後會得到許多convexity defects，可以想成是手指與手指之間的間隙。由於膚色辨識所得出來的結果並不是很乾淨，還會夾帶許多雜訊，所以最後利用一些演算法，像是把指縫夾角過大，或是手指過短的defects去掉，便可以得到較準確的手指數量與位置，來算出最後所比出的手勢為何。
     
-![alt_text](https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg?raw=true "")
+    
+<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
+<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
     
 手勢算出來之後，最後就是指令的傳送，我們利用區域網路的方式，找到接收端的ip address，而Respberry Pi 3 再利用socket的形式傳送給接收端。我們也有額外實作出另一種方式，就算沒有網路，只要有一條網路線，也一樣可以建立一個一對一的區域網路，之後就一樣，找到接收端的ip address，Respberry Pi 3 利用socket傳送指令。
 
