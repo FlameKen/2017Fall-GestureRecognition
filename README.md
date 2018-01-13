@@ -32,8 +32,7 @@
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
 
 再來是找出膚色輪廓，以及輪廓凹陷處來辨識為何種手型。選取輪廓的部分利用`cv2.findContour`，輪廓凹陷處利用`cv2.convexHull`，偵測完之後會得到許多convexity defects，可以想成是手指與手指之間的間隙。由於膚色辨識所得出來的結果並不是很乾淨，還會夾帶許多雜訊，所以最後利用一些演算法，像是把指縫夾角過大，或是手指過短的defects去掉，便可以得到較準確的手指數量與位置，來算出最後所比出的手勢為何。
-    
-    
+
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
     
@@ -59,9 +58,7 @@
   
 # 成果
 
-1.  [Face Tracker]
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=_Xq-OTUw1Vc" target="_blank"><img src="http://img.youtube.com/vi/_Xq-OTUw1Vc/0.jpg" alt="IMAGE ALT TEXT HERE" width="360" height="240" border="20" /></a>
+1.  [Face Tracker](https://www.youtube.com/watch?v=_Xq-OTUw1Vc&feature=youtu.be)
 
 2.  [Slide Controller](https://www.youtube.com/watch?v=H5ghYShFbUI&feature=youtu.be)
 
