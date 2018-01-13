@@ -28,7 +28,7 @@
 ## 臉部偵測&追蹤
 
 ## 手勢辨識&指令傳送
-### 手勢辨識
+### § 手勢辨識
 
 手勢辨識的部份利用OpenCV 3.3所提供的function。
    
@@ -45,7 +45,7 @@
 ### Find contour (Green line) & Get convexhull (red and blue points)
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
 
-### 指令傳送
+### § 指令傳送
 手勢算出來之後，最後就是指令的傳送，我們利用區域網路的方式，找到接收端的ip address，而Respberry Pi 3 再利用socket的形式傳送給接收端。我們也有額外實作出另一種方式，就算沒有網路，只要有一條網路線，也一樣可以建立一個一對一的區域網路，之後就一樣，找到接收端的ip address，Respberry Pi 3 利用socket傳送指令。
 
 ## 指令操作(接收端)
