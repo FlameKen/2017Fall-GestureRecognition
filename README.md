@@ -4,7 +4,9 @@
 
 # 動機
 
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg" width="50%" height="50%">
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg" width="50%" height="50%">
+</p>
 
 《關鍵報告》是一部由Steven Spielberg於2002年所拍攝的一部科幻電影。電影背景設定在一個高科技的未來世界，在這麼一個世界裏面，跟電腦互動的方式並不只是單單的利用鍵盤滑鼠，而是可以直接在空中跟電腦所投影出來的畫面，可以想像就是我們現在所謂的擴增實境，來進行互動。
   
@@ -13,33 +15,37 @@
 # 作法
 ## 架構
 
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Structure.jpg" width="50%" height="50%">
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Structure.jpg" width="50%" height="50%">
+</p> 
+
+我們的整個架構，流程，如上圖所示，而整體又可大致分為兩大部份 ── "臉部偵測&追蹤"，以及"手勢辨識&指令傳送"。
   
-我們的整個架構、流程，如上圖所示，而整體又可大致分為兩大部份 ── "臉部偵測&追蹤"，以及"手勢辨識&指令傳送"。
-  
-首先，利用Logitech Webcam C310拍攝人體上半身，將此畫面丟入Respberry Pi 3中進行人臉辨識以及人臉追蹤，接著將此資訊傳到Arduino UNO，得到人臉位置與相機中心的差距，Arduino再藉由伺服馬達MG 996R來旋轉鏡頭。
+首先，先例用Logitech Webcam C310拍攝人體上半身，將此畫面丟入Respberry Pi 3中進行人臉辨識以及人臉追蹤，接著將此資訊傳到Arduino UNO，得到人臉位置與相機中心的差距，Arduino再藉由伺服馬達MG 996R來旋轉鏡頭。
   
 人臉位置校正完了之後，Rpi camera所拍攝出來頸部以下的畫面會傳送至另一個Respberry Pi 3中，以進行手勢的辨識，最終判斷出來的手勢再轉換成指令，藉由區域網路傳送至我們的電腦。
   
 ## 臉部偵測&追蹤
 
-臉部偵測以及影像追蹤的部份利用OpenCV 3.3所提供的library。
-
-首先是臉部偵測，利用`cv2.CascadeClassifier`去
-
 ## 手勢辨識&指令傳送
+### 手勢辨識
 
-手勢辨識的部份利用OpenCV 3.3所提供的library。
+手勢辨識的部份利用OpenCV 3.3所提供的function。
    
 首先是膚色偵測與校準，偵測的部分利用`cv2.inRange2`鎖定我們所感興趣的顏色範圍，校準的部分利用cv2的trackbar功能，即時的轉換校準範圍，針對不同的背景環境進行即時的修改。
-   
+
+### Skin detection
+<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
+
+### Track bar
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
 
 再來是找出膚色輪廓，以及輪廓凹陷處來辨識為何種手型。選取輪廓的部分利用`cv2.findContour`，輪廓凹陷處利用`cv2.convexHull`，偵測完之後會得到許多convexity defects，可以想成是手指與手指之間的間隙。由於膚色辨識所得出來的結果並不是很乾淨，還會夾帶許多雜訊，所以最後利用一些演算法，像是把指縫夾角過大，或是手指過短的defects去掉，便可以得到較準確的手指數量與位置，來算出最後所比出的手勢為何。
 
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
+### Find contour (Green line) & Get convexhull (red and blue points)
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
-    
+
+### 指令傳送
 手勢算出來之後，最後就是指令的傳送，我們利用區域網路的方式，找到接收端的ip address，而Respberry Pi 3 再利用socket的形式傳送給接收端。我們也有額外實作出另一種方式，就算沒有網路，只要有一條網路線，也一樣可以建立一個一對一的區域網路，之後就一樣，找到接收端的ip address，Respberry Pi 3 利用socket傳送指令。
 
 ## 指令操作(接收端)
@@ -68,7 +74,9 @@
 
 3.  [Painter Controller](https://www.youtube.com/watch?v=sr9F48PzTkM&feature=youtu.be)
 
-<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/paint.jpg" width="50%" height="50%">
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/paint.jpg" width="50%" height="50%">
+</p>
 
 # 參考資料
 
