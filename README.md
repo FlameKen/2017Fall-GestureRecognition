@@ -75,7 +75,7 @@
 3.  [Painter Controller](https://www.youtube.com/watch?v=sr9F48PzTkM&feature=youtu.be)
 
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/paint.jpg" width="50%" height="50%">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/paint.jpg" width="20%" height="20%">
 </p>
 
 # 參考資料
