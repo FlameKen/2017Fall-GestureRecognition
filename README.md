@@ -57,14 +57,14 @@
 
 1.  [Face Tracker](https://www.youtube.com/watch?v=_Xq-OTUw1Vc&feature=youtu.be)
 
-2.  [Slide Controller](https://www.youtube.com/watch?v=H5ghYShFbUI&feature=youtu.be)
+2.  [Slide Controller](https://www.youtube.com/watch?v=H5ghYShFbUI&feature=youtu.be)
 
 3.  [Painter Controller](https://www.youtube.com/watch?v=sr9F48PzTkM&feature=youtu.be)
 
 # 參考資料
 
-1.  [Hand tracking and gesture recognition](https://link.springer.com/article/10.1007/s11042-013-1501-1)
+1.  [Hand tracking and gesture recognition](https://link.springer.com/article/10.1007/s11042-013-1501-1)
 
-2.  [Computer_Vision](https://github.com/RobinCPC/CE264-Computer_Vision)
+2.  [Computer_Vision](https://github.com/RobinCPC/CE264-Computer_Vision)
 
 3.  [pyautogui](https://automatetheboringstuff.com/chapter18/)
