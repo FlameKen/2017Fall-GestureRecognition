@@ -8,6 +8,8 @@
   <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg" width="50%" height="50%">
 </p>
 
+![alt_text](https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg)
+
 《關鍵報告》是一部由Steven Spielberg於2002年所拍攝的一部科幻電影。電影背景設定在一個高科技的未來世界，在這麼一個世界裏面，跟電腦互動的方式並不只是單單的利用鍵盤滑鼠，而是可以直接在空中跟電腦所投影出來的畫面，可以想像就是我們現在所謂的擴增實境，來進行互動。
   
 我們這一組想要重現此場景，不過鑑於我們手邊的硬體設備限制，我們想要先初步設計一個可以追蹤使用者，且不需用藉由滑鼠鍵盤，來跟電腦進行簡單的互動功能，像是利用手勢進行頭影片的翻頁等等簡易卻方便的功能。
@@ -46,6 +48,7 @@
 </p>
 
 ### § RPi3 & Arduino
+
 |            |RPi3        |Arduino     |
 |:----------:|:----------:|:----------:|
 |Up          |GPIO20      |PIN12       |
@@ -54,6 +57,7 @@
 |Right       |GPIO24      |PIN6        |
 
 ### § Arduino & MG996R
+
 |            |Arduino     |MG996R      |
 |:----------:|:----------:|:----------:|
 |GND         |GND         |GND         |
@@ -62,6 +66,7 @@
 |Servo (Y)   |PIN10       |PWM         |
 
 ### § RPi3 & LED
+
 |            |RPi3        |LED         |
 |:----------:|:----------:|:----------:|
 |GND         |GND         |V -         |
