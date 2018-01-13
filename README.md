@@ -41,6 +41,12 @@
   <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/rpi-arduino.jpg" width="50%" height="50%">
 </p>
 
+上圖為線路架構，RPi負責追蹤臉部，傳送旋轉的指令給Arduino，Arduino再控制Servo進行旋轉。我們是透過4條電線進行訊號傳遞，分別控制左轉、右轉、上轉、下轉的訊號，也可以使用Bluetooth、I2C等等。
+
+在利用dlib的correlation_tracker的時候，我們可以得到臉部的中心位置，當中心位置超出我們設定的邊界，就傳訊號給Arduino旋轉，直到影像中心位置回到邊界中間。
+
+Arduino則是設定好伺服馬達的初始角度後，在`loop()`內不斷進行訊號偵測，當我偵測到來自RPi的訊號時，我就朝某個方向不斷增加/減少值，來更新我的伺服馬達角度，為了避免Servo亂轉，當我更新的值要超過180或小於0的時候，便不再讓伺服馬達轉動。
+
 ## 手勢辨識&指令傳送
 
 ### § 手勢辨識
