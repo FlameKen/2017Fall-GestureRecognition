@@ -27,23 +27,37 @@
   
 ## 臉部偵測&追蹤
 
+### § 臉部偵測
+
+臉部偵測的部份利用OpenCV 3.3所提供的library、目標影像追蹤則是使用Dlib提供的library。
+
+利用`cv2.CascadeClassifier`，可以偵測所有出現在畫面的人臉，並且我們選取面積最大的當作我們要跟隨的臉部影像。
+
+為了避免不斷偵測臉部，利用`dlib.correlation_tracker`，可以持續跟隨變化不劇烈的目標影像，做法是將剛剛跟隨的局部影像給tracker去進行跟隨，再將完整的影像畫面丟進function `tracker.update(baseImage)`，計算影像的Quality，若數值夠高，則維持追蹤的狀態，並且更新局部影像位置；若數值過低，則取消追蹤狀態，重新進行臉部偵測。
+
+### § 臉部追蹤
+
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/rpi-arduino.jpg" width="50%" height="50%">
+</p>
+
 ## 手勢辨識&指令傳送
 
 ### § 手勢辨識
 
-手勢辨識的部份利用OpenCV 3.3所提供的function。
+手勢辨識的部份利用OpenCV 3.3所提供的library。
    
 首先是膚色偵測與校準，偵測的部分利用`cv2.inRange2`鎖定我們所感興趣的顏色範圍，校準的部分利用cv2的trackbar功能，即時的轉換校準範圍，針對不同的背景環境進行即時的修改。
 
-### Skin detection
+#### Skin detection
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
 
-### Track bar
+#### Track bar
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
 
 再來是找出膚色輪廓，以及輪廓凹陷處來辨識為何種手型。選取輪廓的部分利用`cv2.findContour`，輪廓凹陷處利用`cv2.convexHull`，偵測完之後會得到許多convexity defects，可以想成是手指與手指之間的間隙。由於膚色辨識所得出來的結果並不是很乾淨，還會夾帶許多雜訊，所以最後利用一些演算法，像是把指縫夾角過大，或是手指過短的defects去掉，便可以得到較準確的手指數量與位置，來算出最後所比出的手勢為何。
 
-### Find contour (Green line) & Get convexhull (red and blue points)
+#### Find contour (Green line) & Get convexhull (red and blue points)
 <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
 
 ### § 指令傳送
