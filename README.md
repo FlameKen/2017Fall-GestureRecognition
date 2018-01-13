@@ -56,3 +56,9 @@
 # 成果
 
 # 參考資料
+
+1.  [Hand tracking and gesture recognition](https://link.springer.com/article/10.1007/s11042-013-1501-1)
+
+2.  [Computer_Vision](https://github.com/RobinCPC/CE264-Computer_Vision)
+
+3.  [pyautogui](https://automatetheboringstuff.com/chapter18/)
