@@ -64,6 +64,8 @@
 
 3.  [Painter Controller](https://www.youtube.com/watch?v=sr9F48PzTkM&feature=youtu.be)
 
+<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/paint.jpg" width="50%" height="50%">
+
 # 參考資料
 
 1.  [Hand tracking and gesture recognition](https://link.springer.com/article/10.1007/s11042-013-1501-1)
