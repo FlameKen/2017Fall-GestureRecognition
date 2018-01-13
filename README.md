@@ -6,7 +6,7 @@
 
   《關鍵報告》是一部由Steven Spielberg於2002年所拍攝的一部科幻電影。電影背景設定在一個高科技的未來世界，在這麼一個世界裏面，跟電腦互動的方式並不只是單單的利用鍵盤滑鼠，而是可以直接在空中跟電腦所投影出來的畫面，可以想像就是我們現在所謂的擴增實境，來進行互動。
   
-  我們這一組想要重現此場景，不過鑑於我們手邊的硬體設備限制，我們想要先初步設計一個可以不需用藉由滑鼠鍵盤，來跟電腦進行簡單的互動功能，像是利用手勢進行頭影片的翻頁等等簡易卻方便的功能。
+  我們這一組想要重現此場景，不過鑑於我們手邊的硬體設備限制，我們想要先初步設計一個可以追蹤使用者，且不需用藉由滑鼠鍵盤，來跟電腦進行簡單的互動功能，像是利用手勢進行頭影片的翻頁等等簡易卻方便的功能。
 
 # 作法
 ## 架構
@@ -54,6 +54,12 @@
 6.  `pyautogui.keyDown(mesg)` & `pyautogui.keyUp(mesg)`: 上面一個指令是瞬間發生的，也就是如果我們今天想要將這個功能實作在遊戲上，他會瞬間按下然後瞬間放開，所以如果是移動式的指令，基本上不會動。如果要避免這種情況的話，我們需要的只是按下，並且等待一段時間再放開，因此這邊需要配合`keyDown(mesg)`以及`keyUp(mesg)`，中間再放一行`time.sleep(t)`，(建議t < 0.3)，這樣便可以將這個實作應用在遊戲上。
   
 # 成果
+
+1.  [Face Tracker](https://www.youtube.com/watch?v=_Xq-OTUw1Vc&feature=youtu.be)
+
+2.  [Slide Controller](https://www.youtube.com/watch?v=H5ghYShFbUI&feature=youtu.be)
+
+3.  [Painter Controller](https://www.youtube.com/watch?v=sr9F48PzTkM&feature=youtu.be)
 
 # 參考資料
 
