@@ -5,10 +5,8 @@
 # 動機
 
 <p align="center">
-    <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg" width="50%" height="50%">
+    <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg" width="50%" height="50%">
 </p>
-
-![alt_text](https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg)
 
 《關鍵報告》是一部由Steven Spielberg於2002年所拍攝的一部科幻電影。電影背景設定在一個高科技的未來世界，在這麼一個世界裏面，跟電腦互動的方式並不只是單單的利用鍵盤滑鼠，而是可以直接在空中跟電腦所投影出來的畫面，可以想像就是我們現在所謂的擴增實境，來進行互動。
 
@@ -18,7 +16,7 @@
 ## 架構
 
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Structure.jpg" width="50%" height="50%">
+  <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/master/img/Structure.jpg" width="50%" height="50%">
 </p> 
 
 我們的整個架構，流程，如上圖所示，而整體又可大致分為兩大部份 ── "臉部偵測&追蹤"，以及"手勢辨識&指令傳送"。
@@ -32,7 +30,7 @@
 ### § 臉部偵測
 
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/face-detect.png" width="50%" height="50%">
+  <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/face-detect.png" width="50%" height="50%">
 </p>
 
 臉部偵測的部份利用OpenCV 3.3所提供的library、目標影像追蹤則是使用Dlib提供的library。
@@ -44,7 +42,7 @@
 ### § 臉部追蹤
 
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/rpi-arduino.jpg" width="50%" height="50%">
+  <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/rpi-arduino.jpg" width="50%" height="50%">
 </p>
 
 上圖為線路架構，RPi負責追蹤臉部，傳送旋轉的指令給Arduino，Arduino再控制Servo進行旋轉。我們是透過4條電線進行訊號傳遞，分別控制左轉、右轉、上轉、下轉的訊號，也可以使用Bluetooth、I2C等等。
@@ -88,19 +86,19 @@ Arduino則是設定好伺服馬達的初始角度後，在`loop()`內不斷進�
 
 #### Skin detection
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
+  <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/skin%20detect.jpg" width="50%" height="50%">
 </p>
 
 #### Track bar
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
+  <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/trackbar.jpg" width="30%" height="30%">
 </p>
 
 再來是找出膚色輪廓，以及輪廓凹陷處來辨識為何種手型。選取輪廓的部分利用`cv2.findContour`，輪廓凹陷處利用`cv2.convexHull`，偵測完之後會得到許多convexity defects，可以想成是手指與手指之間的間隙。由於膚色辨識所得出來的結果並不是很乾淨，還會夾帶許多雜訊，所以最後利用一些演算法，像是把指縫夾角過大，或是手指過短的defects去掉，便可以得到較準確的手指數量與位置，來算出最後所比出的手勢為何。
 
 #### Find contour (Green line) & Get convexhull (red and blue points)
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
+  <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/contour.jpg" width="50%" height="50%">
 </p>
 
 ### § 指令傳送
@@ -140,7 +138,7 @@ Arduino則是設定好伺服馬達的初始角度後，在`loop()`內不斷進�
 3.  [Painter Controller](https://www.youtube.com/watch?v=sr9F48PzTkM&feature=youtu.be)
 
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/paint.jpg" width="20%" height="20%">
+  <img src="https://raw.githubusercontent.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/paint.jpg" width="20%" height="20%">
 </p>
 
 # 參考資料
