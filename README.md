@@ -70,6 +70,10 @@
 
 6.  `pyautogui.keyDown(mesg)` & `pyautogui.keyUp(mesg)`: 上面一個指令是瞬間發生的，也就是如果我們今天想要將這個功能實作在遊戲上，他會瞬間按下然後瞬間放開，所以如果是移動式的指令，基本上不會動。如果要避免這種情況的話，我們需要的只是按下，並且等待一段時間再放開，因此這邊需要配合`keyDown(mesg)`以及`keyUp(mesg)`，中間再放一行`time.sleep(t)`，(建議t < 0.3)，這樣便可以將這個實作應用在遊戲上。
   
+### § 指令穩定
+
+所謂指令穩定，
+
 # 成果
 
 1.  [Face Tracker](https://www.youtube.com/watch?v=_Xq-OTUw1Vc&feature=youtu.be)
