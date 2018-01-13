@@ -5,7 +5,9 @@
 # 動機
 
 <p align="center">
+  
   <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg" width="50%" height="50%">
+
 </p>
 
 ![alt_text](https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg)
