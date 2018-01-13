@@ -29,6 +29,10 @@
 
 ### § 臉部偵測
 
+<p align="center">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/face-detect.jpg" width="50%" height="50%">
+</p>
+
 臉部偵測的部份利用OpenCV 3.3所提供的library、目標影像追蹤則是使用Dlib提供的library。
 
 利用`cv2.CascadeClassifier`，可以偵測所有出現在畫面的人臉，並且我們選取面積最大的當作我們要跟隨的臉部影像。
@@ -42,7 +46,6 @@
 </p>
 
 ### § RPi3 & Arduino
-
 |            |RPi3        |Arduino     |
 |:----------:|:----------:|:----------:|
 |Up          |GPIO20      |PIN12       |
@@ -51,7 +54,6 @@
 |Right       |GPIO24      |PIN6        |
 
 ### § Arduino & MG996R
-
 |            |Arduino     |MG996R      |
 |:----------:|:----------:|:----------:|
 |GND         |GND         |GND         |
@@ -60,7 +62,6 @@
 |Servo (Y)   |PIN10       |PWM         |
 
 ### § RPi3 & LED
-
 |            |RPi3        |LED         |
 |:----------:|:----------:|:----------:|
 |GND         |GND         |V -         |
