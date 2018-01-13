@@ -4,7 +4,7 @@
 
 # 動機
 
-![alt_text](https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg)
+<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Minority-Report.jpg" width="50%" height="50%">
 
   《關鍵報告》是一部由Steven Spielberg於2002年所拍攝的一部科幻電影。電影背景設定在一個高科技的未來世界，在這麼一個世界裏面，跟電腦互動的方式並不只是單單的利用鍵盤滑鼠，而是可以直接在空中跟電腦所投影出來的畫面，可以想像就是我們現在所謂的擴增實境，來進行互動。
   
@@ -13,7 +13,7 @@
 # 作法
 ## 架構
 
-![alt_text](https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Structure.jpg?raw=true)
+<img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/Structure.jpg" width="50%" height="50%">
   
   我們的整個架構，流程，如上圖所示，而整體又可大致分為兩大部份 ── "臉部偵測&追蹤"，以及"手勢辨識&指令傳送"。
   
