@@ -1,7 +1,4 @@
 #!/usr/bin/env/python3
-'''
-    Author: Yuan PJ <yuan0925pj@gmail.com>
-'''
 
 #Import the OpenCV and dlib libraries
 import cv2
@@ -18,6 +15,9 @@ faceCascade = cv2.CascadeClassifier('/home/pi/code/face-recognition/haarcascades
 OUTPUT_SIZE_WIDTH = 775
 OUTPUT_SIZE_HEIGHT = 600
 
+#Development mode will open the window showing video capture
+dev = False
+
 #Setup GPIO
 GPIO.setmode(GPIO.BCM)
 LEFT = 20
@@ -30,27 +30,22 @@ GPIO.setup(LEFT, GPIO.OUT) #Yellow
 GPIO.setup(RIGHT, GPIO.OUT) #Green
 GPIO.setup(UP, GPIO.OUT) #Red
 GPIO.setup(DOWN, GPIO.OUT) #Orange
-#GPIO.output(LEFT, GPIO.LOW)
-#GPIO.output(RIGHT, GPIO.LOW)
-#GPIO.output(UP, GPIO.LOW)
-#GPIO.output(DOWN, GPIO.LOW)
 
 def detectAndTrackLargestFace():
     #Open the first webcame device
-    #capture = cv2.VideoCapture(0)
     capture = VideoStream(src=0).start()
     time.sleep(3)
 
     #Create two opencv named windows
-    #cv2.namedWindow("base-image", cv2.WINDOW_AUTOSIZE)
-    #cv2.namedWindow("result-image", cv2.WINDOW_AUTOSIZE)
+    if dev:
+        cv2.namedWindow("base-image", cv2.WINDOW_AUTOSIZE)
+        cv2.namedWindow("result-image", cv2.WINDOW_AUTOSIZE)
+        #Position the windows next to eachother
+        cv2.moveWindow("base-image",0,100)
+        cv2.moveWindow("result-image",400,100)
 
-    #Position the windows next to eachother
-    #cv2.moveWindow("base-image",0,100)
-    #cv2.moveWindow("result-image",400,100)
-
-    #Start the window thread for the two windows we are using
-    #cv2.startWindowThread()
+        #Start the window thread for the two windows we are using
+        cv2.startWindowThread()
 
     #Create the tracker we will use
     tracker = dlib.correlation_tracker()
@@ -71,15 +66,14 @@ def detectAndTrackLargestFace():
     try:
         while True:
             #Retrieve the latest image from the webcam
-            #rc, fullSizeBaseImage = capture.read()
             fullSizeBaseImage = capture.read()
+            #Wait for camera to be ready
             if fullSizeBaseImage is None:
                 time.sleep(0.1)
                 continue
 
             #Resize the image to 320x240
             baseImage = cv2.resize( fullSizeBaseImage, ( 320, 240))
-
 
             #Check if a key was pressed and if it was Q, then destroy all
             #opencv windows and exit the application
@@ -89,17 +83,10 @@ def detectAndTrackLargestFace():
                 GPIO.cleanup()
                 exit(0)
 
-
-
             #Result image is the image we will show the user, which is a
             #combination of the original image from the webcam and the
             #overlayed rectangle for the largest face
-            #resultImage = baseImage.copy()
-
-
-
-
-
+            resultImage = baseImage.copy()
 
             #If we are not tracking a face, then try to detect one
             if not trackingFace:
@@ -118,11 +105,6 @@ def detectAndTrackLargestFace():
                 #in the image
                 faces = faceCascade.detectMultiScale(gray, 1.3, 5)
 
-                #In the console we can show that only now we are
-                #using the detector for a face
-                #print("Using the cascade detector to detect face")
-
-
                 #For now, we are only interested in the 'largest'
                 #face, and we determine this based on the largest
                 #area of the found rectangle. First initialize the
@@ -132,7 +114,6 @@ def detectAndTrackLargestFace():
                 y = 0
                 w = 0
                 h = 0
-
 
                 #Loop over all faces and check if the area for this
                 #face is the largest so far
@@ -170,8 +151,6 @@ def detectAndTrackLargestFace():
                 #quality of the tracking update
                 trackingQuality = tracker.update( baseImage )
 
-
-
                 #If the tracking quality is good enough, determine the
                 #updated position of the tracked region and draw the
                 #rectangle
@@ -182,15 +161,16 @@ def detectAndTrackLargestFace():
                     t_y = int(tracked_position.top())
                     t_w = int(tracked_position.width())
                     t_h = int(tracked_position.height())
-                    #cv2.rectangle(resultImage, (t_x, t_y),
-                    #                            (t_x + t_w , t_y + t_h),
-                    #                            rectangleColor ,2)
+                    cv2.rectangle(resultImage, (t_x, t_y),
+                                                (t_x + t_w , t_y + t_h),
+                                                rectangleColor ,2)
+
+                    GPIO.output(LED, GPIO.HIGH)
+                    #If the center of face out of border, will send trigger
+                    #to the arduino to track the face.
                     pos_x = t_x + t_w/2
                     pos_y = t_y + t_h/2
                     print(pos_x, pos_y)
-                    #print(left_x, pos_x, right_x)
-                    #print(bottom_y, pos_y, top_y)
-                    GPIO.output(LED, GPIO.HIGH)
                     if pos_x > right_x:
                         GPIO.output(RIGHT, GPIO.HIGH)
                         GPIO.output(LEFT, GPIO.LOW)
@@ -219,10 +199,6 @@ def detectAndTrackLargestFace():
                     #again
                     trackingFace = 0
 
-
-
-
-
             #Since we want to show something larger on the screen than the
             #original 320x240, we resize the image again
             #
@@ -230,12 +206,13 @@ def detectAndTrackLargestFace():
             #of the baseimage and make the result image a copy of this large
             #base image and use the scaling factor to draw the rectangle
             #at the right coordinates.
-            #largeResult = cv2.resize(resultImage,
-            #                         (OUTPUT_SIZE_WIDTH,OUTPUT_SIZE_HEIGHT))
+            largeResult = cv2.resize(resultImage,
+                                     (OUTPUT_SIZE_WIDTH,OUTPUT_SIZE_HEIGHT))
 
             #Finally, we want to show the images on the screen
-            #cv2.imshow("base-image", baseImage)
-            #cv2.imshow("result-image", largeResult)
+            if dev:
+                cv2.imshow("base-image", baseImage)
+                cv2.imshow("result-image", largeResult)
 
 
 

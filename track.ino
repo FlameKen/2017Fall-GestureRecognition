@@ -1,15 +1,19 @@
 #include <Servo.h>
 
-#define left 12
-#define right 13
-#define up 5
-#define down 6
+#define left 12  // trigger pin of turning left
+#define right 13 // trigger pin of turning right
+#define up 5     // trigger pin of turning up
+#define down 6   // trigger pin of turning down
 
+#define  servomaxx 180
+#define  servomaxy 180
+#define  servominx 0
+#define  servominy 0
 #define  servocenterx   70  // center po#define  of x servo
 #define  servocentery   70  // center po#define  of y servo
-#define  servopinx   9   // digital pin for servo x
-#define  servopiny   10  // digital servo for pin y
-#define  baudrate 9600  // com port speed. Must match your C++ setting
+#define  servopinx   9      // digital pin for servo x
+#define  servopiny   10     // digital pin for servo y
+#define  baudrate 9600      // com port speed. Must match your C++ setting
 #define  distancex 1  // x servo rotation steps
 #define  distancey 1  // y servo rotation steps
 
@@ -58,21 +62,21 @@ void loop () {
   posy = servoy.read();
   if (turnleft) {
     posx += distancex;
-    servox.write(posx);
+    if (posx < servomaxx) servox.write(posx);
   }
   else if (turnright) {
     posx -= distancex;
-    servox.write(posx);
+    if (posx > servominx) servox.write(posx);
   }
   delay(250);
 
   if (turnup) {
     posy -= distancey;
-    servoy.write(posy); 
+    if (posy < servomaxy) servoy.write(posy); 
   }
   else if (turndown) {
     posy += distancey;
-    servoy.write(posy); 
+    if (posy > servominy) servoy.write(posy); 
   }
   
   delay(250);
