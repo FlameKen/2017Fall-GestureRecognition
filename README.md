@@ -30,7 +30,7 @@
 ### § 臉部偵測
 
 <p align="center">
-  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/face-detect.jpg" width="50%" height="50%">
+  <img src="https://github.com/NTUEE-ESLab/2017Fall-GestureRecognition/blob/master/img/face-detect.png" width="50%" height="50%">
 </p>
 
 臉部偵測的部份利用OpenCV 3.3所提供的library、目標影像追蹤則是使用Dlib提供的library。
